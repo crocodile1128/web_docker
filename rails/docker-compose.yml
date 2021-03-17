@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    environment:
+      - FLAG=CTF{r4i1s_rce}
+    ports:
+      - "8100:80"

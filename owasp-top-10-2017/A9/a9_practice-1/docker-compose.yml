@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    image: medicean/vulapps:p_phpmailer_1
+    network_mode: "bridge"
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+      - ./src/index.php:/var/www/html/index.php:ro
+    ports:
+      - "8103:80"

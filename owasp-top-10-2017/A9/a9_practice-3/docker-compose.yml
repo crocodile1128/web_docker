@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "mysql"
+    ports:
+      - "8105:80"
+  mysql:
+    image: mysql:5
+    network_mode: "bridge"
+    volumes:
+      - ./A9-Practice3.sql:/docker-entrypoint-initdb.d/A9-Practice3.sql:ro
+    environment: 
+      - MYSQL_DATABASE=A9-Practice3
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_ONETIME_PASSWORD

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    ports:
+      - "8100:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - ./supervisord.ini:/etc/supervisor.d/supervisord.ini:ro

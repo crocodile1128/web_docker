@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "mysql"
+    ports:
+      - "8092:80"
+  mysql:
+    image: mysql:8.0.3
+    network_mode: "bridge"
+    volumes:
+      - ./A2-Practice2.sql:/docker-entrypoint-initdb.d/A2-Practice2.sql:ro
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=A2-Practice2

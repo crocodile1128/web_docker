@@ -1,0 +1,22 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+  modsecurity:
+    build:
+      context: ./modsecurity
+    network_mode: "bridge"
+    volumes:
+      - ./modsecurity/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./modsecurity/REQUEST-901-INITIALIZATION.conf:/etc/nginx/modsecurity.d/owasp-modsecurity-crs-3.2/rules/REQUEST-901-INITIALIZATION.conf:ro
+      - ./modsecurity/REQUEST-912-DOS-PROTECTION.conf:/etc/nginx/modsecurity.d/owasp-modsecurity-crs-3.2/rules/REQUEST-912-DOS-PROTECTION.conf:ro
+      - ./modsecurity/REQUEST-933-APPLICATION-ATTACK-PHP.conf:/etc/nginx/modsecurity.d/owasp-modsecurity-crs-3.2/rules/REQUEST-933-APPLICATION-ATTACK-PHP.conf:ro
+    environment:
+      - PARANOIA=1
+    links:
+      - web:server
+    ports:
+      - "8095:80"

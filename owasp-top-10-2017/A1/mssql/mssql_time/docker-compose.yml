@@ -1,0 +1,20 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "mssql"
+    ports:
+      - "8089:80"
+  mssql:
+    image: microsoft/mssql-server-linux:2017-CU1
+    network_mode: "bridge"
+    volumes:
+      - ./mssql_time.sql:/mssql_time.sql:ro
+      - ./import_table.sh:/import_table.sh:ro
+      - ./entrypoint.sh:/entrypoint.sh:ro
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+    command: "/bin/bash /entrypoint.sh"

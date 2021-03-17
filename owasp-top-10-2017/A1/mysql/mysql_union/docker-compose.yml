@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "mysql"
+    ports:
+      - "8083:80"
+  mysql:
+    image: mysql:8.0.3
+    network_mode: "bridge"
+    volumes:
+      - ./mysql_union.sql:/docker-entrypoint-initdb.d/mysql_union.sql:ro
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mysql_union

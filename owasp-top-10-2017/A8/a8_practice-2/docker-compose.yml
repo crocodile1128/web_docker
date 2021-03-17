@@ -1,0 +1,11 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+    environment:
+      - PASSENGER_APP_ENV=development
+    ports:
+      - "8102:80"

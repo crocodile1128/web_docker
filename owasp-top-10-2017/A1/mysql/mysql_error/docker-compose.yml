@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "mysql"
+    ports:
+      - "8086:80"
+  mysql:
+    image: mysql:5
+    network_mode: "bridge"
+    volumes:
+      - ./mysql_error.sql:/docker-entrypoint-initdb.d/mysql_error.sql:ro
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mysql_error

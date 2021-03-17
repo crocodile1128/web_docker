@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    image: vulhub/struts2:2.5.12-rest-showcase
+    network_mode: "bridge"
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+    ports:
+      - "8104:8080"

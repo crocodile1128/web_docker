@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "oracle"
+    ports:
+      - "8088:80"
+    volumes:
+      - ./30-docker-php-ext-oci8-privileged-connect.ini:/usr/local/etc/php/conf.d/30-docker-php-ext-oci8-privileged-connect.ini:ro
+  oracle:
+    image: wnameless/oracle-xe-11g:latest
+    network_mode: "bridge"
+    volumes:
+      - ./oracle_error.sql:/docker-entrypoint-initdb.d/oracle_error.sql:ro
+    environment: 
+      - ORACLE_DISABLE_ASYNCH_IO=true
