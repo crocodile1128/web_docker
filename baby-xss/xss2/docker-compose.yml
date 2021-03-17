@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    network_mode: "bridge"
+    links:
+      - "mysql"
+    ports:
+      - "8072:80"
+  mysql:
+    image: mysql:8.0.3
+    network_mode: "bridge"
+    volumes:
+      - ./xss.sql:/docker-entrypoint-initdb.d/xss.sql:ro
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=xss

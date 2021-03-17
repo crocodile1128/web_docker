@@ -8,7 +8,7 @@ services:
       - WEBWOLF_PORT=9090
       - TZ=Europe/Amsterdam
     ports:
-      - "8080:8080"
+      - "8079:8080"
       - "9001:9001"
     volumes:
       - .:/home/webgoat/.webgoat

